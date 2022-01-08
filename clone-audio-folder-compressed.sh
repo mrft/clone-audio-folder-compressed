@@ -30,7 +30,7 @@ onlyleft() {
 SRCDIR="$1"
 DSTDIR="$2"
 
-# aac or ogg (or mayeb some others like wma later on)
+# aac or ogg (or maybe some others like wma later on)
 TYPE="$3"
 
 TMP_SRCFILES=/tmp/srcfiles
@@ -91,6 +91,9 @@ echo "Let's go..."
           mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
         ;;
         ogg)
+          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -vn "${DSTPATH}"
+        ;;
+        wma)
           mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -vn "${DSTPATH}"
         ;;
       esac
