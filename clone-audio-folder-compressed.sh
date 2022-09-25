@@ -89,6 +89,15 @@ echo "Let's go..."
           # libfaac might be lower quality but the default aac is said to be experimental on the current version on diskstation
           # -vn should remove the video channel with cover art that some flacs contain apparently
           mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
+          #                                ffmpeg -i "$1"                   -b:a 160k  -c:a libfdk_aac "${1%.flac}.m4a
+        ;;
+        m4a)
+          # FOR AAC
+          #########
+          # libfdk_aac should be highest quality codec but not available on synology
+          # libfaac might be lower quality but the default aac is said to be experimental on the current version on diskstation
+          # -vn should remove the video channel with cover art that some flacs contain apparently
+          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
         ;;
         ogg)
           mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -vn "${DSTPATH}"
