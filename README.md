@@ -11,4 +11,6 @@ have in your car or something.
 
 # How to use
 
-  ./clone-audio-folder-compressed.sh ./myfoldercontainingsourcefiles ./myfoldertoholdthecompressedfiles ogg
+```
+./clone-audio-folder-compressed.sh ./myfoldercontainingsourcefiles ./myfoldertoholdthecompressedfiles ogg
+```

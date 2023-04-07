@@ -76,7 +76,7 @@ echo "Let's go..."
     DSTPATH="${DSTDIR}/${FCONVERTED}"
 
     if [ ! -e "${DSTPATH}" ]; then
-      sleep 3
+      # sleep 3
       # echo
       echo "---> Start converting [${DSTPATH}] <---"
       echo
@@ -88,7 +88,7 @@ echo "Let's go..."
           # libfdk_aac should be highest quality codec but not available on synology
           # libfaac might be lower quality but the default aac is said to be experimental on the current version on diskstation
           # -vn should remove the video channel with cover art that some flacs contain apparently
-          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
+          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -hide_banner -loglevel error -stats -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
           #                                ffmpeg -i "$1"                   -b:a 160k  -c:a libfdk_aac "${1%.flac}.m4a
         ;;
         m4a)
@@ -97,13 +97,14 @@ echo "Let's go..."
           # libfdk_aac should be highest quality codec but not available on synology
           # libfaac might be lower quality but the default aac is said to be experimental on the current version on diskstation
           # -vn should remove the video channel with cover art that some flacs contain apparently
-          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
+          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -hide_banner -loglevel error -stats -i "${SRCDIR}/${SRCFILE}" -ab 160000 -acodec aac -vn "${DSTPATH}"
         ;;
-        ogg)
-          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -vn "${DSTPATH}"
+        ogg|wma|mp3)
+          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -hide_banner -loglevel error -stats -i "${SRCDIR}/${SRCFILE}" -ab 160000 -vn "${DSTPATH}"
         ;;
-        wma)
-          mkdir -p "${DSTDIR}/${FPATH}" && ffmpeg -i "${SRCDIR}/${SRCFILE}" -ab 160000 -vn "${DSTPATH}"
+        *)
+          echo "Unknown type: ${TYPE}"
+          exit 1
         ;;
       esac
 
